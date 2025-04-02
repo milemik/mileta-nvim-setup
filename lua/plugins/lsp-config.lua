@@ -17,10 +17,8 @@ return {
           "dockerls",
           "html",
           "tailwindcss",
-          "htmx",
           "eslint",
           "jsonls",
-          "nginx_language_server",
           "ruff",
           "terraformls",
         }
@@ -40,7 +38,6 @@ return {
       lspconfig.htmx.setup({})
       lspconfig.eslint.setup({})
       lspconfig.jsonls.setup({})
-      lspconfig.nginx_language_server.setup({})
       lspconfig.ruff.setup({})
       lspconfig.terraformls.setup({})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
