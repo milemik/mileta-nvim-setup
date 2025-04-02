@@ -35,7 +35,6 @@ return {
       lspconfig.dockerls.setup({})
       lspconfig.html.setup({})
       lspconfig.tailwindcss.setup({})
-      lspconfig.htmx.setup({})
       lspconfig.eslint.setup({})
       lspconfig.jsonls.setup({})
       lspconfig.ruff.setup({})
@@ -52,6 +51,7 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.ruff,
+        null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.completion.spell,
     },
