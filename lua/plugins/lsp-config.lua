@@ -28,17 +28,18 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({})
-      lspconfig.gopls.setup({})
-      lspconfig.docker_compose_language_service.setup({})
-      lspconfig.dockerls.setup({})
-      lspconfig.html.setup({})
-      lspconfig.tailwindcss.setup({})
-      lspconfig.eslint.setup({})
-      lspconfig.jsonls.setup({})
-      lspconfig.ruff.setup({})
-      lspconfig.terraformls.setup({})
+      lspconfig.lua_ls.setup({ capabilities = capabilities })
+      lspconfig.gopls.setup({capabilities = capabilities })
+      lspconfig.docker_compose_language_service.setup({capabilities = capabilities })
+      lspconfig.dockerls.setup({capabilities = capabilities })
+      lspconfig.html.setup({capabilities = capabilities })
+      lspconfig.tailwindcss.setup({capabilities = capabilities })
+      lspconfig.eslint.setup({capabilities = capabilities })
+      lspconfig.jsonls.setup({capabilities = capabilities })
+      lspconfig.ruff.setup({capabilities = capabilities })
+      lspconfig.terraformls.setup({capabilities = capabilities })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
     end
   },
