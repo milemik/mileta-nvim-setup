@@ -21,6 +21,7 @@ return {
           "jsonls",
           "ruff",
           "terraformls",
+          "pyright",
         }
       })
     end
@@ -39,6 +40,7 @@ return {
       lspconfig.eslint.setup({capabilities = capabilities })
       lspconfig.jsonls.setup({capabilities = capabilities })
       lspconfig.ruff.setup({capabilities = capabilities })
+      lspconfig.pyright.setup({capabilities = capabilities})
       lspconfig.terraformls.setup({capabilities = capabilities })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
     end
@@ -51,9 +53,8 @@ return {
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.ruff,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.completion.spell,
     },
     -- Formating shortcats
