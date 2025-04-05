@@ -21,6 +21,7 @@ return {
           "ruff",
           "terraformls",
           "pyright",
+          "pylsp",
         },
       })
     end,
@@ -38,9 +39,24 @@ return {
       lspconfig.tailwindcss.setup({ capabilities = capabilities })
       lspconfig.eslint.setup({ capabilities = capabilities })
       lspconfig.jsonls.setup({ capabilities = capabilities })
-      lspconfig.ruff.setup({ capabilities = capabilities })
+      -- lspconfig.ruff.setup({ capabilities = capabilities })
       lspconfig.pyright.setup({ capabilities = capabilities })
       lspconfig.terraformls.setup({ capabilities = capabilities })
+      lspconfig.pylsp.setup({
+        capabilities = capabilities,
+        settings = {
+          pylsp = {
+            plugins = {
+              flake8 = {
+                enabled = true,
+                maxLineLength = 120, -- Set your desired line length
+                ignore = {}, -- Ignore specific error codes
+              },
+            },
+          },
+        },
+      })
+      -- custom keys
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
     end,
   },
@@ -52,7 +68,9 @@ return {
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.black.with({
+            extra_args = { "--line-length=120" },
+          }),
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.completion.spell,
         },
@@ -63,6 +81,9 @@ return {
   },
   {
     "milemik/nvim-py-detector",
+    depedencies = {
+      "pyright",
+    },
     config = function()
       require("nvim_py_detector").setup()
     end,
