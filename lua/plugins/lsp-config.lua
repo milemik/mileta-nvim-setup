@@ -2,15 +2,14 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup({
-      })
-    end
+      require("mason").setup({})
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { 
+        ensure_installed = {
           "lua_ls",
           "gopls",
           "docker_compose_language_service",
@@ -22,44 +21,50 @@ return {
           "ruff",
           "terraformls",
           "pyright",
-        }
+        },
       })
-    end
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.gopls.setup({capabilities = capabilities })
-      lspconfig.docker_compose_language_service.setup({capabilities = capabilities })
-      lspconfig.dockerls.setup({capabilities = capabilities })
-      lspconfig.html.setup({capabilities = capabilities })
-      lspconfig.tailwindcss.setup({capabilities = capabilities })
-      lspconfig.eslint.setup({capabilities = capabilities })
-      lspconfig.jsonls.setup({capabilities = capabilities })
-      lspconfig.ruff.setup({capabilities = capabilities })
-      lspconfig.pyright.setup({capabilities = capabilities})
-      lspconfig.terraformls.setup({capabilities = capabilities })
+      lspconfig.gopls.setup({ capabilities = capabilities })
+      lspconfig.docker_compose_language_service.setup({ capabilities = capabilities })
+      lspconfig.dockerls.setup({ capabilities = capabilities })
+      lspconfig.html.setup({ capabilities = capabilities })
+      lspconfig.tailwindcss.setup({ capabilities = capabilities })
+      lspconfig.eslint.setup({ capabilities = capabilities })
+      lspconfig.jsonls.setup({ capabilities = capabilities })
+      lspconfig.ruff.setup({ capabilities = capabilities })
+      lspconfig.pyright.setup({ capabilities = capabilities })
+      lspconfig.terraformls.setup({ capabilities = capabilities })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-    end
+    end,
   },
   {
     "nvimtools/none-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
 
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.completion.spell,
-    },
-    -- Formating shortcats
-    vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-})
-    end
-  }
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.completion.spell,
+        },
+        -- Formating shortcats
+        vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {}),
+      })
+    end,
+  },
+  {
+    "milemik/nvim-py-detector",
+    config = function()
+      require("nvim_py_detector").setup()
+    end,
+  },
 }
